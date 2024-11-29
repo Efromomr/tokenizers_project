@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Tokenization - Tokenization Project{% endblock %}
+
+{% block content %}
+<h1>Tokenization</h1>
+
+{% if error %}
+<p class="text-danger">{{ error }}</p>
+{% endif %}
+
+<form action="/tokenize" method="POST" enctype="multipart/form-data" lang="en">
+    <label for="language" class="form-label">Select Language:</label>
+    <select name="language" class="form-select mb-3" required>
+        <option value="ch">Chinese</option>
+        <option value="jp">Japanese</option>
+        <option value="ko">Korean</option>
+        <option value="ar">Arabic</option>
+    </select>
+    
+    <label for="file" class="form-label">Upload CSV File:</label>
+    <input type="file" id="fileInput" name="file" class="form-control mb-3" accept=".csv" required>
+    <div id="fileError" style="color: red; display: none;">No file selected. Please select a file to upload.</div>
+    
+    <button name="action" value="preview" class="btn btn-preview">Preview</button>
+    <button name="action" value="download" class="btn btn-primary">Download</button>
+</form>
+
+<form action="/tokenize" method="POST">
+    <button name="action" value="example" class="btn btn-outline-primary mt-3">Example</button>
+</form>
+
+{% if result %}
+<h2>{{ result }}</h2>
+<h3>Perplexity: {{ perplexity }}</h3>
+{% endif %}
+
+{% if preview_data is not none and not preview_data.empty %}
+<h2>Preview of metrics</h2>
+<div class="table-responsive">
+    <div>{{ preview_data.to_html(classes="table table-bordered table-hover")|safe }}</div>
+</div>
+{% else %}
+<p>No preview data available.</p>
+{% endif %}
+
+{% endblock %}

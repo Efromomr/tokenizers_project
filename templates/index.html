@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Tokenization Project{% endblock %}
+
+{% block content %}
+<h1>About the Project</h1>
+<p>This project demonstrates tokenization methods and evaluates their performance using perplexity.</p>
+<p>
+    For non-standard scripts, the critical stage is pre-tokenization, i.e., the preliminary segmentation of text into "words." 
+    The following modules were used for pre-tokenization: 
+    <strong>jieba</strong> (Chinese), <strong>mecab</strong> (Japanese), <strong>konlpy</strong> (Korean), <strong>pyarabic</strong> (Arabic). 
+    For tokenization, the following algorithms were used: <strong>WordPiece</strong> (Bert), <strong>Byte-Pair Encoding</strong> (GPT), and <strong>Unigram</strong> (T5, BigBird).
+</p>
+
+<h2>Articles</h2>
+<ul>
+    {% for article in articles %}
+        <li>
+            <a href="{{ article.link }}" target="_blank">{{ article.title }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<script>
+function toggleContent(index) {
+    const content = document.getElementById(`content-${index}`);
+    content.style.display = content.style.display === 'none' ? 'block' : 'none';
+}
+</script>
+{% endblock %}

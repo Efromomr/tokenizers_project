@@ -1,0 +1,15 @@
+Flask
+transformers
+datasets
+torch
+tokenizers
+pandas
+jieba
+pytextspan
+mecab-python3
+pyarabic
+konlpy
+botocore
+cached_path
+scikit-learn==1.5.2
+accelerate
